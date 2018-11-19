@@ -1,0 +1,14 @@
+[
+  {
+      "name": "Gateway1",
+      "status": "Doing Good",
+  },
+  {
+      "name": "Hive1",
+      "status": "Needs Attention",
+   },
+   {
+       "name": "Hive2",
+       "status": "Feeling Illini",
+    }  
+]

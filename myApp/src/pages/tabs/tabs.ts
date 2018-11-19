@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
-
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
-
+import { MainPage } from '../main/main';
+import { MessagesPage } from '../messages/messages';
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
-
+  public tab1Root: any;
+  public tab2Root: any;
+  private session_token: string = "fhuihfuaklhgfula";
   constructor() {
-
+    this.tab1Root = MainPage;
+    this.tab2Root = MessagesPage;
+    console.log(this.session_token);
   }
 }
