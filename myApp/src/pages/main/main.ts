@@ -4,6 +4,8 @@ import { NotificationPage } from '../notification/notification';
 import { NotificationActionPage } from '../notification-action/notification-action';
 import { AddNewdevicePage } from '../add-newdevice/add-newdevice';
 import {DevicePage} from '../device/device';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
 /**
  * Generated class for the MainPage page.
@@ -21,19 +23,37 @@ export class MainPage {
   private session_token :string;
   favouritena:boolean = false;
   favouriten:boolean = false;
-  favourite1:boolean = false;
-  favourite2:boolean = false;
-  favourite3:boolean = false;
+  favourite:Array<boolean> = [];
+  deviceTitles:Array<string> = [];
+  deviceContent:Array<string> = [];
+  deviceFavourite:Array<boolean> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public items:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient) {
     this.session_token = navParams.data;
     console.log("In the main page, now the session_token is " , this.session_token);
+    this.getData();
   }
 
+  getData(){
+    let url = '../assets/Birds.json';
+    console.log("please read");
+    let data: Observable<any> = this.http.get(url);
+    data.subscribe(result =>{
+      this.items = result;
+      for(let item of this.items){
+        if(item.favourite == "Yes"){
+          this.favourite.push(true);
+        }
+        else{
+          this.favourite.push(false);
+        }
+      }
+    });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainPage');
-
   }
 
   checkNotification(){
@@ -47,21 +67,10 @@ export class MainPage {
   addNewDevice(){
     this.navCtrl.push(AddNewdevicePage);
   }
-  goDevicePage(){
-    this.navCtrl.push(DevicePage);
-  }
-
-  addFavourite1(event: Event){
-    event.stopPropagation();
-    this.favourite1 = !this.favourite1;
-  }
-  addFavourite2(event: Event){
-    event.stopPropagation();
-    this.favourite2 = !this.favourite2;
-  }
-  addFavourite3(event: Event){
-    event.stopPropagation();
-    this.favourite3 = !this.favourite3;
+  goDevicePage(itemid: string){
+    this.navCtrl.push(DevicePage,{
+      itemid:itemid
+    });
   }
 
   addFavouritena(event: Event){
@@ -72,6 +81,11 @@ export class MainPage {
   addFavouriten(event: Event){
     event.stopPropagation();
     this.favouriten = !this.favouriten;
+  }
+
+  addFavourite(event: Event, itemid:number){
+    event.stopPropagation();
+    this.favourite[itemid] = !this.favourite[itemid];
   }
 
 }

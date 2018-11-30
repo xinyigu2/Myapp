@@ -36,32 +36,22 @@
   <button ion-button full (click) = "checkNotificationAction()">notification with action</button> -->
   <button ion-button (click) = "addNewDevice()">add new device</button>
 
-  <ion-card (click)="goDevicePage()" >
-    <button ion-button icon-start clear small (click)="addFavourite1($event)" >
-      <ion-icon name="star-outline" *ngIf="!favourite1"></ion-icon>
-      <ion-icon name="star" *ngIf="favourite1"></ion-icon>
-    </button>
-    <ion-card-header>Gateway1</ion-card-header>
-    <ion-card-content> Doing Good!</ion-card-content>
-  </ion-card>
+  <!-- <ion-card *ngFor = "let item of items " >
+      <ion-card-content>
+        <ion-card-title>
+          {{item.Name}}
+        </ion-card-title>
+      </ion-card-content>
+  </ion-card> -->
 
-  <ion-card (click)="goDevicePage()" >
-    <button ion-button icon-start clear small (click)="addFavourite2($event)" >
-      <ion-icon name="star-outline" *ngIf="!favourite2"></ion-icon>
-      <ion-icon name="star" *ngIf="favourite2"></ion-icon>
-    </button>
-    <ion-card-header>Hive1</ion-card-header>
-    <ion-card-content> Need Attention!</ion-card-content>
-  </ion-card>
 
-  <ion-card (click)="goDevicePage()" >
-    <button ion-button icon-start clear small (click)="addFavourite3($event)" >
-      <ion-icon name="star-outline" *ngIf="!favourite3"></ion-icon>
-      <ion-icon name="star" *ngIf="favourite3"></ion-icon>
+  <ion-card *ngFor = "let item of items" (click)="goDevicePage(item.id)">
+    <button ion-button icon-start clear small (click)="addFavourite($event, item.id)" >
+      <ion-icon name="star-outline" *ngIf="!favourite[item.id]"></ion-icon>
+      <ion-icon name="star" *ngIf="favourite[item.id]"></ion-icon>
     </button>
-    <ion-card-header>Hive2</ion-card-header>
-    <ion-card-content> Feeling Illini!</ion-card-content>
+    <ion-card-header>{{item.name}}</ion-card-header>
+    <ion-card-content>{{item.status}}</ion-card-content>
   </ion-card>
-
 
 </ion-content>

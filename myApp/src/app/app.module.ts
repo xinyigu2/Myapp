@@ -19,6 +19,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { File } from '@ionic-native/file';
 
+
+///
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+///
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,12 +38,13 @@ import { File } from '@ionic-native/file';
     NotificationActionPage,
     AddNewdevicePage,
     MessagesPage,
-    DevicePage
+    DevicePage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,6 +65,6 @@ import { File } from '@ionic-native/file';
     SplashScreen,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  ],
 })
 export class AppModule {}

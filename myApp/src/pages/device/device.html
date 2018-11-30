@@ -14,40 +14,12 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <button ion-button icon-start clear small (click)="addFavourite1()" >
-      <ion-icon name="star-outline" *ngIf="!favourite1"></ion-icon>
-      <ion-icon name="star" *ngIf="favourite1"></ion-icon>
+  <ion-card *ngFor = "let num of numberList">
+    <button ion-button icon-start clear small (click)="addFavourite($event, num)" >
+      <ion-icon name="star-outline" *ngIf="!favourite[num]"></ion-icon>
+      <ion-icon name="star" *ngIf="favourite[num]"></ion-icon>
     </button>
-    <ion-card-header>Swarming possible</ion-card-header>
-    <ion-card-content> The fine detail at quick glance</ion-card-content>
+    <ion-card-header>{{titles[num]}}</ion-card-header>
+    <ion-card-content>{{contents[num]}}</ion-card-content>
   </ion-card>
-
-  <ion-card>
-      <button ion-button icon-start clear small (click)="addFavourite2()" >
-        <ion-icon name="star-outline" *ngIf="!favourite2"></ion-icon>
-        <ion-icon name="star" *ngIf="favourite2"></ion-icon>
-      </button>
-    <ion-card-header>Acoustics</ion-card-header>
-    <ion-card-content> Quiet </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <button ion-button icon-start clear small (click)="addFavourite3()" >
-      <ion-icon name="star-outline" *ngIf="!favourite3"></ion-icon>
-      <ion-icon name="star" *ngIf="favourite3"></ion-icon>
-    </button>
-    <ion-card-header>Temperature</ion-card-header>
-    <ion-card-content> 65 F</ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <button ion-button icon-start clear small (click)="addFavourite4()" >
-      <ion-icon name="star-outline" *ngIf="!favourite4"></ion-icon>
-      <ion-icon name="star" *ngIf="favourite4"></ion-icon>
-    </button>
-    <ion-card-header>Where is the honey?</ion-card-header>
-    <ion-card-content> A map </ion-card-content>
-  </ion-card>
-
 </ion-content>
